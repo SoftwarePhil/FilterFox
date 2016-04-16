@@ -10,6 +10,7 @@ public function __construct()
 }
 
 public function start(){
+
   $this->load->helper('form');
   $this->load->library('form_validation');
   $data['title'] = 'Log in!';
@@ -17,15 +18,17 @@ public function start(){
   $this->form_validation->set_rules('email', 'Email', 'required');
   $this->form_validation->set_rules('password', 'Name', 'required');
 
-  if ($this->form_validation->run() === FALSE)
+
+  if(array_key_exists('create', $_POST)){
+    $this->create();
+  }
+
+  elseif ($this->form_validation->run() === FALSE)
   {
       $this->load->view('templates/header', $data);
       $this->load->view('user/log_in');
       $this->load->view('templates/footer');
 
-  }
-  elseif(array_key_exists('create', $_POST)){
-    $this->create();
   }
   else{
       $email = $this->input->post('email');
@@ -53,8 +56,6 @@ public function start(){
           $this->load->view('templates/footer');
       }
   }
-
-
 }
 
 public function create(){

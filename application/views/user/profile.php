@@ -25,7 +25,7 @@ pic;
   </div>
 <div class ="pure-u-1 pure-u-md-1 pure-u-lg-1-3"><p>
   <table class="pure-table">
-    <h3>favorite posts</h3>
+    <h3>top posts</h3>
     <thead>
         <tr>
             <th>user</th>

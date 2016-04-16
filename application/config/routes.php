@@ -51,4 +51,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['user/create'] = 'user/create';
 $route['user'] = 'user';
+$route['post'] = 'post';
 $route['default_controller'] = 'pages/view';

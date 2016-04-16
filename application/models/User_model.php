@@ -57,5 +57,4 @@ public function edit_photo($id, $path){
     $edit_photo = array('photo'=>$path);
     $this->db->update('user', $edit_photo, "user_id = $id");
 }
-
 }
