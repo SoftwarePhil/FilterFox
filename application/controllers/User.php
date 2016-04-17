@@ -5,6 +5,7 @@ public function __construct()
 {
         parent::__construct();
         $this->load->model('user_model');
+        $this->load->model('post_model');
         $this->load->helper('url_helper');
         $this->load->library('session');
 }
@@ -84,6 +85,8 @@ public function create(){
 }
 
 public function profile($id){
+  $data['last_five_posts'] = $this->post_model->get_last_five_posts($id);
+
   $my_id = $this->session->userdata('id');
   if($my_id == FALSE || $my_id != $id){
     $data['user'] = $this->user_model->get_user($id);

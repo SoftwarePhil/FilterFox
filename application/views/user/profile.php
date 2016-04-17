@@ -52,3 +52,4 @@ pic;
   </table>
   </p></div>
 </p></div>
+<?php print_r($last_five_posts) ?>

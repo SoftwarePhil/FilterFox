@@ -9,10 +9,7 @@ public function validate_user($email, $password){
     $query = $this->db->get_where('user_access', array('email' => $email));
       $test1 = $query->row_array();
 
-    $query = $this->db->get_where('user_access', array('password' => $password));
-      $test2 = $query->row_array();
-
-    if($test1 != FALSE && $test2 != FALSE && $test1['password'] == $test2['password'] && $test1['email'] == $test2['email']){
+    if($test1 != FALSE && $test1['password'] == $password && $test1['email'] == $email){
         return $test1['user_id'];
     }
 
