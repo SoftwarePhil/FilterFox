@@ -3,13 +3,7 @@
                 <title>filterfox</title>
                 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
                 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
-
-                <style media="screen">
-                nav{
-                    position:relative;
-                    background-color:rgb(10,145,56);
-                  }
-                </style>
+                <link rel="stylesheet" href="http://localhost/filterfox/my_sheet.css">
         </head>
         <nav>
                 <h1>FilterFox</h1>

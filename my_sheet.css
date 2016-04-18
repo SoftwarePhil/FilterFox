@@ -1,0 +1,28 @@
+/*!
+<style media="screen">
+*/
+nav{
+    position:relative;
+    background-color:rgb(10,145,56);
+  }
+
+pre{
+    white-space: pre-line;
+    width: 300px;
+    }
+
+    a:link {
+      text-decoration: none;
+      }
+
+  a:visited {
+      text-decoration: none;
+      }
+
+  a:hover {
+      text-decoration: underline;
+      }
+
+  a:active {
+      text-decoration: underline;
+      }

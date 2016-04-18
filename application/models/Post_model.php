@@ -92,7 +92,8 @@ public function get_last_five_posts($id){
   foreach($query->result_array() as $row){
     $posts[] = array(
                     'post_content' =>$row['post_content'],
-                    'likes' =>$row['likes']
+                    'likes' =>$row['likes'],
+                    'post_id' => $row['post_id']
                     );
   }
   return $posts;

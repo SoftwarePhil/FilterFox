@@ -87,6 +87,7 @@ if(array_key_exists('id', $this->session->userdata)){
     $this->load->view('templates/footer');
     print_r($this->input->post());
 }
+  else{$this->_draw_header();}
 }
 
 public function _draw_header($info = FALSE){

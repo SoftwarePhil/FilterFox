@@ -36,10 +36,11 @@ pic;
     <tbody>
 <?php
 foreach($last_five_posts as $post){
+echo '<tr><td>'.anchor("post/show/$post[post_id]", "$post[post_content]", 'class="link-class"').'</td>';
 print <<<posts
-<tr><td>$post[post_content]</td>
     <td><b>$post[likes]</b></td></tr>
 posts;
+#echo '<td>'.anchor("post/show/$post[post_id]", "$post[post_content]", 'class="link-class"').'</td>';
 }
 ?>
     </tbody>
