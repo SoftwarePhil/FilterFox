@@ -21,6 +21,7 @@ public function make($id, $post){
 }
 
 public function get_all($id){
+  $this->db->order_by('user_id desc, post_id desc');
   $query = $this->db->get_where('post', array('user_id' => $id));
 
   $posts = array();
@@ -34,15 +35,17 @@ public function get_all($id){
 }
 
 public function get($post_id){
-  $query = $this->db->get_where('post', array('post_id' => $id));
+  $query = $this->db->get_where('post', array('post_id' => $post_id));
 
-  $posts = array();
+  $post = array();
   $row = $query->result_array();
+
   $post[] = array(
-              'post'=>$row,
-              'comments'=>$this->get_comments($row['post_id']),
-              'user'=>$this->user_model->get_user($id));
-  }
+              'post'=>$row[0],
+              'comments'=>$this->get_comments($row[0]['post_id']),
+              'user'=>$this->user_model->get_user($row[0]['user_id'])
+            );
+
   return $post;
 }
 
@@ -74,6 +77,12 @@ public function make_comment($id, $post_id, $comment){
   return $last_id;
 }
 
+public function like($id, $post_id){
+  $this->db->where('post_id', $post_id);
+  $this->db->set('likes', 'likes+1', FALSE);
+  $this->db->update('post');
+}
+
 public function get_last_five_posts($id){
   $this->db->limit(5);
   $this->db->order_by('user_id desc, post_id desc');
@@ -81,7 +90,10 @@ public function get_last_five_posts($id){
 
   $posts = array();
   foreach($query->result_array() as $row){
-    $posts[] = $row['post_content'];
+    $posts[] = array(
+                    'post_content' =>$row['post_content'],
+                    'likes' =>$row['likes']
+                    );
   }
   return $posts;
 }

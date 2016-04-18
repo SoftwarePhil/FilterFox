@@ -9,6 +9,11 @@
                     position:relative;
                     background-color:rgb(10,145,56);
                   }
+
+                pre{
+                  	white-space: pre-line;
+                  	width: 300px;
+                  	}
                 </style>
         </head>
         <nav>
@@ -18,6 +23,9 @@
                   <div class="pure-u-1-3"><p>
                     <?php echo form_open('user/log_out'); ?>
                             <input type="submit" name="logout" value="logout"/>
+                            <input type="submit" name="profile" value="profile"/>
+                            <input type="submit" name="posts" value="posts"/>
+                            <input type="submit" name="new_post" value="new post"/>
                         </form>
                   </p></div>
               </div>

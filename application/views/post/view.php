@@ -10,6 +10,7 @@ foreach($post as $p){
   $date = $p['post']['post_date'];
   $content = $p['post']['post_content'];
   $post_id = $p['post']['post_id'];
+  $likes = $p['post']['likes'];
   $post_comments = $p['comments'];
 print <<<post
 <tr><td><h2>$name</h2></td>
@@ -36,11 +37,13 @@ print <<<make_comment
     <label for="comment"></label>
     <textarea name="post"></textarea><br />
 
-    <input type="submit" name="submit" value="comment" />
+    <input type="submit" name="like" value="comment" />
+    <input type="submit" name="like2" value="like"/>
 </form>
     </li>
     </li></ul>
 </td>
+<td><h2>$likes</h2></td>
 </tr>
 make_comment;
 

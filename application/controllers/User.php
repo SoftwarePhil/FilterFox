@@ -106,9 +106,7 @@ public function profile($id){
     $name = $data['user']['name'];
     $data['title'] = "Hello, welcome $name";
 
-    $this->load->helper('form'); //so logout works
-
-    $this->load->view('templates/header_in', $data);
+    $this->_draw_header();
     $this->load->view('user/profile', $data);
     $this->load->view('user/edit');
     $this->load->view('templates/footer');
@@ -139,7 +137,7 @@ public function edit_bio(){
 
   if ($this->form_validation->run() === FALSE)
   {
-      $this->load->view('templates/header', $data);
+      $this->_draw_header();
       $this->load->view('user/edit_bio');
       $this->load->view('templates/footer');
 
@@ -173,7 +171,7 @@ function edit_photo(){
 
       $data['title'] = "Photo upload!";
 
-      $this->load->view('templates/header', $data);
+      $this->_draw_header();
 			$this->load->view('user/edit_photo', $error);
 		}
 		else
@@ -188,8 +186,43 @@ function edit_photo(){
 	}
 
 public function log_out(){
-  $this->session->sess_destroy();
-  $this->start();
+  $edits = $this->input->post();
+  $my_id = $this->session->userdata('id');
+
+  if(array_key_exists('logout', $edits)){
+    $this->session->sess_destroy();
+    $this->start();
+  }
+
+  if(array_key_exists('profile', $edits)){
+    redirect("user/profile/$my_id");
+  }
+
+  if(array_key_exists('posts', $edits)){
+    redirect("post/show_all/$my_id");
+  }
+
+  if(array_key_exists('new_post', $edits)){
+    redirect("post/create/$my_id");
+  }
+}
+
+public function _draw_header(){
+  if(array_key_exists('id', $this->session->userdata)){
+    $my_id = $this->session->userdata('id');
+
+    $data['user'] = $this->user_model->get_user($my_id);
+    $name = $data['user']['name'];
+    $data['title'] = "Hello, welcome $name";
+
+    $this->load->helper('form'); //so logout works
+
+    $this->load->view('templates/header_in', $data);
+  }
+  else{
+    $data['title'] = "Hello, please log in!";
+    $this->load->view('templates/header', $data);
+  }
 }
 
 }

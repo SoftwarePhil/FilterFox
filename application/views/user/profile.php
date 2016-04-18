@@ -1,3 +1,4 @@
+
 <div align="center" class="pure-g">
     <div class="pure-u-1 pure-u-md-1 pure-u-lg-1"><p><h1><big><?php echo $user['name'] ?></big></p></h1></div>
   <div class="pure-u-1 pure-u-md-1-3 pure-u-lg-1-3"><p>
@@ -25,31 +26,23 @@ pic;
   </div>
 <div class ="pure-u-1 pure-u-md-1 pure-u-lg-1-3"><p>
   <table class="pure-table">
-    <h3>top posts</h3>
+    <h3>posts</h3>
     <thead>
         <tr>
-            <th>user</th>
-            <th>post</th>
+            <th>recent posts</th>
+            <th>likes</th>
         </tr>
     </thead>
-
     <tbody>
-        <tr>
-            <td>bob</td>
-            <td>I ate a green cat</td>
-        </tr>
-
-        <tr>
-            <td>hood struct h310</td>
-            <td>trees, fees, and flees, #hoodlife</td>
-        </tr>
-
-        <tr>
-            <td>robot robit</td>
-            <td>proccessing request bitch</td>
-        </tr>
+<?php
+foreach($last_five_posts as $post){
+print <<<posts
+<tr><td>$post[post_content]</td>
+    <td><b>$post[likes]</b></td></tr>
+posts;
+}
+?>
     </tbody>
   </table>
   </p></div>
 </p></div>
-<?php print_r($last_five_posts) ?>
