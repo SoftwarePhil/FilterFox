@@ -12,13 +12,14 @@ foreach($post as $p){
   $post_id = $p['post']['post_id'];
   $likes = $p['post']['likes'];
   $post_comments = $p['comments'];
+echo '<tr><td><h2>'.anchor("user/profile/$other_user_id", "$name", 'class="link-class"').'</h2></td>';
 print <<<post
-<tr><td><h2>$name</h2></td>
 <td><div class="pure-g">
     <div class="pure-u-1-2"><img src =$photo width="150"></div>
     <div class="pure-u-1-3">$content<div>
 </div>
 </td>
+<td><h2>$likes</h2></td>
 <td>
   <div class="pure-menu pure-menu-horizontal">
     <ul class="pure-menu-list">
@@ -43,7 +44,6 @@ print <<<make_comment
     </li>
     </li></ul>
 </td>
-<td><h2>$likes</h2></td>
 </tr>
 make_comment;
 

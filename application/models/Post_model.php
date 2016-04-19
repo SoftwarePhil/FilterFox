@@ -78,9 +78,25 @@ public function make_comment($id, $post_id, $comment){
 }
 
 public function like($id, $post_id){
-  $this->db->where('post_id', $post_id);
-  $this->db->set('likes', 'likes+1', FALSE);
-  $this->db->update('post');
+  $like = array(
+      'user_id'=>$id,
+      'post_id'=>$post_id
+  );
+
+  $this->db->where($like);
+
+  $query = $this->db->get('post_like');
+  $data = $query->result_array();
+
+  if(empty($data)){
+    $this->db->insert('post_like', $like);
+
+    $this->db->where('post_id', $post_id);
+    $this->db->set('likes', 'likes+1', FALSE);
+    $this->db->update('post');
+}
+
+return $data;
 }
 
 public function get_last_five_posts($id){

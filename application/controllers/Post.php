@@ -80,12 +80,35 @@ if(array_key_exists('id', $this->session->userdata)){
     }
 
   if(array_key_exists('like2', $POST)){
-    $this->post_model->like($my_id, $post_id);
+      print_r($this->post_model->like($my_id, $post_id));
+
   }
 
     redirect("/post/show_all/$other_user_id");
     $this->load->view('templates/footer');
-    print_r($this->input->post());
+}
+  else{$this->_draw_header();}
+}
+
+public function comment_single($post_id, $other_user_id){
+  //add error condtion for not being logged in
+if(array_key_exists('id', $this->session->userdata)){
+  $POST = $this->input->post();
+  $my_id = $this->session->userdata('id');
+
+  $this->load->helper('form');
+
+  if(array_key_exists('like', $POST)){
+        $new_post = $this->input->post('post');
+        $this->post_model->make_comment($my_id, $post_id, $new_post);
+    }
+
+  if(array_key_exists('like2', $POST)){
+      $this->post_model->like($my_id, $post_id));
+  }
+
+    redirect("/post/show/$post_id");
+    $this->load->view('templates/footer');
 }
   else{$this->_draw_header();}
 }

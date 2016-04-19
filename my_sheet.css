@@ -16,11 +16,11 @@ pre{
       }
 
   a:visited {
-      text-decoration: none;
+        color: black;
       }
 
   a:hover {
-      text-decoration: underline;
+      color: darkgreen;
       }
 
   a:active {

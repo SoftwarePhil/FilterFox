@@ -1,6 +1,6 @@
 <table align="center" class ="pure-table-striped" width="66%">
   <thread>
-    
+
 <?php
 $p = $post[0];
 $name = $p['user']['name'];
@@ -10,14 +10,18 @@ $date = $p['post']['post_date'];
 $content = $p['post']['post_content'];
 $post_id = $p['post']['post_id'];
 $post_comments = $p['comments'];
+$likes = $p['post']['likes'];
+
+echo '<tr><td><h2>'.anchor("user/profile/$other_user_id", "$name", 'class="link-class"').'</h2></td>';
 print <<<post
-<tr><td><h2>$name</h2></td>
 <td><div class="pure-g">
   <div class="pure-u-1-2"><img src =$photo width="150"></div>
   <div class="pure-u-1-3">$content<div>
 </div>
 </td>
+<td><h2>$likes</h2></td>
 <td>
+
 <div class="pure-menu pure-menu-horizontal">
   <ul class="pure-menu-list">
   <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
@@ -29,13 +33,14 @@ post;
 
 echo validation_errors();
 
-echo form_open("post/comment/$post_id/$other_user_id");
+echo form_open("post/comment_single/$post_id/$other_user_id");
 
 print <<<make_comment
-  <label for="comment"></label>
-  <textarea name="post"></textarea><br />
+    <label for="comment"></label>
+    <textarea name="post"></textarea><br />
 
-  <input type="submit" name="submit" value="comment" />
+    <input type="submit" name="like" value="comment" />
+    <input type="submit" name="like2" value="like"/>
 </form>
   </li>
   </li></ul>
@@ -48,10 +53,14 @@ $content = $comment['post']['comment_content'];
 $date = $comment['post']['date'];
 $name = $comment['user']['name'];
 $picture = $comment['user']['photo'];
-print <<<p_comments
+$users_id = $comment['user']['user_id'];
+//echo '<div class ="pure-u-1-8">'.anchor("user/profile/$users_id", "$name", 'class="link-class"').'</div>';
+print <<<start_table
 <tr><td></td>
   <td><div class="pure-g">
-    <div class ="pure-u-1-8">$name</div>
+start_table;
+  echo '<div class ="pure-u-1-8">'.anchor("user/profile/$users_id", "$name", 'class="link-class"').'</div>';
+print <<<p_comments
     <div class="pure-u-3-8"><img src =$picture width="100"></div>
     <div class="pure-u-3-8">$content</div>
     </div></td>
