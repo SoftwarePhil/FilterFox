@@ -38,7 +38,7 @@ public function create(){
     echo "login to post";
   }
 }
-
+/*
 public function show_all($id){
   $data['post'] = $this->post_model->get_all($id);
 
@@ -51,9 +51,23 @@ public function show_all($id){
   $this->_draw_header('Posts');
   $this->load->view('post/view', $data);
 }
+*/
+
+public function show_all($id){
+  $posts = $this->post_model->get_all($id);
+
+  $this->load->helper('form');
+  $this->load->library('form_validation');
+  $this->_draw_header('Posts');
+
+  foreach($posts as $p){
+    $data['post'] = $p;
+    $this->load->view('post/single_post', $data);
+  }
+}
 
 public function show($post_id){
-  $data['post'] = $this->post_model->get($post_id);
+  $data['post'] = $this->post_model->get($post_id)[0];
 
   if (empty($data['post'])){
           echo "this post is not there";
@@ -86,6 +100,7 @@ if(array_key_exists('id', $this->session->userdata)){
 
     redirect("/post/show_all/$other_user_id");
     $this->load->view('templates/footer');
+    //print_r($this->input->post());
 }
   else{$this->_draw_header();}
 }
@@ -104,11 +119,12 @@ if(array_key_exists('id', $this->session->userdata)){
     }
 
   if(array_key_exists('like2', $POST)){
-      $this->post_model->like($my_id, $post_id));
+      print_r($this->post_model->like($my_id, $post_id));
   }
 
     redirect("/post/show/$post_id");
     $this->load->view('templates/footer');
+    //print_r($this->input->post());
 }
   else{$this->_draw_header();}
 }

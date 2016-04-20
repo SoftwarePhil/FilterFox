@@ -1,22 +1,21 @@
-<table align="center" class ="pure-table-striped" width="66%">
+<p>
+<table align="center" class ="pure-table-striped" width="80%">
   <thread>
 
 <?php
-$p = $post[0];
-$name = $p['user']['name'];
-$other_user_id = $p['user']['user_id'];
-$photo = $p['user']['photo'];
-$date = $p['post']['post_date'];
-$content = $p['post']['post_content'];
-$post_id = $p['post']['post_id'];
-$post_comments = $p['comments'];
-$likes = $p['post']['likes'];
-
+$name = $post['user']['name'];
+$other_user_id = $post['user']['user_id'];
+$photo = $post['user']['photo'];
+$date = $post['post']['post_date'];
+$content = $post['post']['post_content'];
+$post_id = $post['post']['post_id'];
+$post_comments = $post['comments'];
+$likes = $post['post']['likes'];
 echo '<tr><td><h2>'.anchor("user/profile/$other_user_id", "$name", 'class="link-class"').'</h2></td>';
 print <<<post
 <td><div class="pure-g">
-  <div class="pure-u-1-2"><img src =$photo width="150"></div>
-  <div class="pure-u-1-3">$content<div>
+  <div class="pure-u-sm-1 pure-u-lg-1-2"><img src =$photo width="150"></div>
+  <div class="pure-u-sm-1 pure-u-lg-1-2">$content<div>
 </div>
 </td>
 <td><h2>$likes</h2></td>
@@ -61,8 +60,8 @@ print <<<start_table
 start_table;
   echo '<div class ="pure-u-1-8">'.anchor("user/profile/$users_id", "$name", 'class="link-class"').'</div>';
 print <<<p_comments
-    <div class="pure-u-3-8"><img src =$picture width="100"></div>
-    <div class="pure-u-3-8">$content</div>
+    <div class="pure-u-1 pure-u-lg-3-8"><img src =$picture width="100"></div>
+    <div class="pure-u-1 pure-u-lg-3-8">$content</div>
     </div></td>
 <td>
   <div class="pure-menu pure-menu-horizontal">
@@ -76,3 +75,4 @@ print <<<p_comments
 p_comments;
 }
 ?>
+</p>

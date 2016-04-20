@@ -114,5 +114,4 @@ public function get_last_five_posts($id){
   }
   return $posts;
 }
-
 }

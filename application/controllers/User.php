@@ -93,17 +93,14 @@ public function profile($id){
     if (empty($data['user'])){
             show_404();
     }
-
-    $data['title'] = 'A Profile';
-
-    $this->load->view('templates/header', $data);
+    $a_user_name = $data['user']['name'];
+    $this->_draw_header("$a_user_name's profile");
     $this->load->view('user/profile', $data);
     $this->load->view('templates/footer');
   }
   else{
     $data['user'] = $this->user_model->get_user($id);
     $name = $data['user']['name'];
-    $data['title'] = "Hello, welcome $name";
 
     $this->_draw_header();
     $this->load->view('user/profile', $data);
@@ -206,13 +203,19 @@ public function log_out(){
   }
 }
 
-public function _draw_header(){
+public function _draw_header($info = FALSE){
   if(array_key_exists('id', $this->session->userdata)){
     $my_id = $this->session->userdata('id');
-
     $data['user'] = $this->user_model->get_user($my_id);
-    $name = $data['user']['name'];
-    $data['title'] = "Hello, welcome $name";
+    $name = $info;
+
+    if($info == FALSE){
+      $name = $data['user']['name'];
+      $data['title'] = "Hello, welcome $name";
+    }
+    else{
+      $data['title'] = $info;
+    }
 
     $this->load->helper('form'); //so logout works
 
