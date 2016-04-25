@@ -1,6 +1,6 @@
 <p>
 <div class ="pure-g" align='center'>
-  <div class="pure-u-1"
+  <div class="pure-u-1">
 <?php echo validation_errors(); ?>
 
 <?php echo form_open('post/create'); ?>

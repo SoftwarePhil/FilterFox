@@ -87,6 +87,7 @@ public function profile($id){
   $data['last_five_posts'] = $this->post_model->get_last_five_posts($id);
 
   $my_id = $this->session->userdata('id');
+
   if($my_id == FALSE || $my_id != $id){
     $data['user'] = $this->user_model->get_user($id);
 
@@ -199,7 +200,7 @@ public function log_out(){
   }
 
   if(array_key_exists('new_post', $edits)){
-    redirect("post/create/$my_id");
+    redirect("post/create/");
   }
 }
 

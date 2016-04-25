@@ -99,6 +99,30 @@ public function like($id, $post_id){
 return $data;
 }
 
+public function view($id, $post_id){
+  $like = array(
+      'user_id'=>$id,
+      'post_id'=>$post_id
+  );
+
+  $this->db->where($like);
+
+  $query = $this->db->get('post_view');
+  $data = $query->result_array();
+
+  if(empty($data)){
+    $this->db->insert('post_like', $like);
+
+    $this->db->where('post_id', $post_id);
+    $this->db->set('likes', 'likes+1', FALSE);
+    $this->db->update('post');
+}
+
+public function next_post($id){
+  
+}
+}
+
 public function get_last_five_posts($id){
   $this->db->limit(5);
   $this->db->order_by('user_id desc, post_id desc');

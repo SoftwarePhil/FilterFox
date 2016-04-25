@@ -129,6 +129,11 @@ if(array_key_exists('id', $this->session->userdata)){
   else{$this->_draw_header();}
 }
 
+public function main_view(){
+  //here we will see a new post/comment/like and have the
+  //option to write a new post
+}
+
 public function _draw_header($info = FALSE){
   if(array_key_exists('id', $this->session->userdata)){
     $my_id = $this->session->userdata('id');
