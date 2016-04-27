@@ -117,10 +117,10 @@ public function view($id, $post_id){
     $this->db->set('likes', 'likes+1', FALSE);
     $this->db->update('post');
 }
+}
 
 public function next_post($id){
-  
-}
+
 }
 
 public function get_last_five_posts($id){
