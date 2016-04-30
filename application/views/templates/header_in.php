@@ -2,9 +2,9 @@
 <html>
         <head>
                 <title>filterfox</title>
-                <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-                <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
-                <link rel="stylesheet" href="http://localhost/filterfox/my_sheet.css">
+               <link rel="stylesheet" href="//cdn.rawgit.com/yahoo/pure-release/v0.6.0/pure-nr-min.css">
+                <link rel="stylesheet" href="//cdn.rawgit.com/yahoo/pure-release/v0.6.0/pure-min.css">
+                <link rel="stylesheet" href="/my_sheet.css">
         </head>
         <nav>
               <div class="pure-g">

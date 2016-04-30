@@ -143,8 +143,9 @@ public function next_post($user_id){
   $data = $query->result_array();
 
   if(empty($data)){
-    return 0;
+    return 1;
   }
+  
   $my_views = array();
   foreach ($data as $view) {
     if($view['user_id'] == $user_id){
