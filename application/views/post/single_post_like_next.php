@@ -32,7 +32,7 @@ post;
 
 echo validation_errors();
 
-echo form_open("post/comment_single/$post_id/$other_user_id");
+echo form_open("post/comment_create/$post_id/$other_user_id");
 
 print <<<make_comment
     <label for="comment"></label>
