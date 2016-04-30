@@ -12,7 +12,7 @@ public function __construct(){
 public function create(){
   if(array_key_exists('id', $this->session->userdata)){
     $my_id = $this->session->userdata('id');
-    $data['title'] = "Post something cool!";
+    $data['title'] = "make posts and see whats new!";
 
     $this->load->helper('form');
     $this->load->library('form_validation');
@@ -24,13 +24,16 @@ public function create(){
 
         $this->load->view('templates/header_in', $data);
         $this->load->view('post/new');
-        $this->load->view('templates/footer');
 
+        $post_id = $this->post_model->next_post($my_id);
+        print_r($post_id);
+        $this->show_with_post($post_id);
     }
+
     else{
       $new_post = $this->input->post('post');
       $this->post_model->make($my_id, $new_post);
-      redirect("post/show_all/$my_id");
+      redirect("post/create");
     }
   }
 
@@ -77,6 +80,34 @@ public function show($post_id){
   $this->load->library('form_validation');
   $this->_draw_header('Posts');
   $this->load->view('post/single_post', $data);
+}
+
+public function show_with_post($post_id){
+  if(array_key_exists('id', $this->session->userdata)){
+    $POST = $this->input->post();
+    $my_id = $this->session->userdata('id');
+
+    if($post_id == 0){
+      echo "no new posts";
+    }
+    else{
+      $data['post'] = $this->post_model->get($post_id)[0];
+      $this->load->helper('form');
+      $this->load->library('form_validation');
+      $this->load->view('post/single_post_like_next', $data);
+    }
+
+    if (array_key_exists('like', $POST)){
+      $this->post_model->like($my_id, $post_id);
+      $this->post_model->view($my_id, $post_id);
+      redirect("post/create");
+    }
+
+    if (array_key_exists('next', $POST)){
+      $this->post_model->view($my_id, $post_id);
+      redirect("post/create");
+    }
+  }
 }
 
 
@@ -127,11 +158,6 @@ if(array_key_exists('id', $this->session->userdata)){
     //print_r($this->input->post());
 }
   else{$this->_draw_header();}
-}
-
-public function main_view(){
-  //here we will see a new post/comment/like and have the
-  //option to write a new post
 }
 
 public function _draw_header($info = FALSE){

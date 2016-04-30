@@ -100,27 +100,72 @@ return $data;
 }
 
 public function view($id, $post_id){
-  $like = array(
+  $view = array(
       'user_id'=>$id,
       'post_id'=>$post_id
   );
 
-  $this->db->where($like);
+  $this->db->where($view);
 
   $query = $this->db->get('post_view');
   $data = $query->result_array();
 
   if(empty($data)){
-    $this->db->insert('post_like', $like);
-
-    $this->db->where('post_id', $post_id);
-    $this->db->set('likes', 'likes+1', FALSE);
-    $this->db->update('post');
+    $this->db->insert('post_view', $view);
 }
 }
 
-public function next_post($id){
+public function valid_post_id($post_id){
+  $view = array(
+      'post_id'=>$post_id
+  );
 
+  $this->db->where($view);
+
+  $query = $this->db->get('post');
+  $data = $query->result_array();
+
+  if(empty($data)){
+    return false;
+  }
+  else{
+    return true;
+  }
+}
+
+public function next_post($user_id){
+
+  $this->db->select('post.post_id, post_view.user_id');
+  $this->db->from('post');
+  $this->db->join('post_view', 'post.post_id = post_view.post_id');
+  $this->db->order_by('user_id, post_id');
+  $query = $this->db->get();
+  $data = $query->result_array();
+
+  if(empty($data)){
+    return 0;
+  }
+  $my_views = array();
+  foreach ($data as $view) {
+    if($view['user_id'] == $user_id){
+      $my_views[] = $view;
+    }
+  }
+
+  if(empty($my_views)){
+    return 1;
+  }
+
+  $next_post = end($my_views)['post_id'] + 1;
+
+  if($this->valid_post_id($next_post)){
+    return $next_post;
+    //return $data;
+  }
+
+  else{
+    return 0;
+  }
 }
 
 public function get_last_five_posts($id){
