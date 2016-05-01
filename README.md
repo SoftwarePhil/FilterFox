@@ -11,4 +11,4 @@ have files in apache server directory and be in that directory
 
 3. change application/config/database to match your database info
 
-4. now you are good to go!
+4. now you are good to go! (another_branch if using cloud9)
