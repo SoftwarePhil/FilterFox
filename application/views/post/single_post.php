@@ -14,8 +14,8 @@ $likes = $post['post']['likes'];
 echo '<tr><td><h2>'.anchor("user/profile/$other_user_id", "$name", 'class="link-class"').'</h2></td>';
 print <<<post
 <td><div class="pure-g">
-  <div class="pure-u-sm-1 pure-u-lg-1-2"><img src =$photo width="150"></div>
-  <div class="pure-u-sm-1 pure-u-lg-1-2">$content<div>
+  <div class="pure-u-1-2"><img src =$photo width="150"></div>
+  <div class="pure-u-1-2">$content<div>
 </div>
 </td>
 <td><h2>$likes</h2></td>
@@ -60,8 +60,8 @@ print <<<start_table
 start_table;
   echo '<div class ="pure-u-1-8">'.anchor("user/profile/$users_id", "$name", 'class="link-class"').'</div>';
 print <<<p_comments
-    <div class="pure-u-1 pure-u-lg-3-8"><img src =$picture width="100"></div>
-    <div class="pure-u-1 pure-u-lg-3-8">$content</div>
+    <div class="pure-u-3-8"><img src =$picture width="100"></div>
+    <div class="pure-u-3-8">$content</div>
     </div></td>
 <td>
   <div class="pure-menu pure-menu-horizontal">

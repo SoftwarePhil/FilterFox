@@ -175,7 +175,7 @@ function edit_photo(){
 		{
       $file_name = $this->upload->data()['file_name'];
       #this path will have to be changed if change where site is..
-      $path = "http://localhost/filterfox/profile_photos/$file_name";
+      $path = base_url()."profile_photos/$file_name";
 
       $this->user_model->edit_photo($my_id, $path);
       $this->profile($my_id);

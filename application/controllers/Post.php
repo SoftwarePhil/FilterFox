@@ -26,7 +26,7 @@ public function create(){
         $this->load->view('post/new');
 
         $post_id = $this->post_model->next_post($my_id);
-        print_r($post_id);
+        //print_r($post_id);
         $this->show_with_post($post_id);
     }
 
@@ -108,6 +108,30 @@ public function show_with_post($post_id){
       redirect("post/create");
     }
   }
+}
+
+public function comment_create($post_id, $other_user_id){
+  //add error condtion for not being logged in
+if(array_key_exists('id', $this->session->userdata)){
+  $POST = $this->input->post();
+  $my_id = $this->session->userdata('id');
+
+  $this->load->helper('form');
+
+  if(array_key_exists('like', $POST)){
+        $new_post = $this->input->post('post');
+        $this->post_model->make_comment($my_id, $post_id, $new_post);
+    }
+
+  if(array_key_exists('like2', $POST)){
+      print_r($this->post_model->like($my_id, $post_id));
+  }
+
+    redirect("/post/create");
+    $this->load->view('templates/footer');
+    //print_r($this->input->post());
+}
+  else{$this->_draw_header();}
 }
 
 
