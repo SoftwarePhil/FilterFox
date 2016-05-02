@@ -188,7 +188,7 @@ public function log_out(){
 
   if(array_key_exists('logout', $edits)){
     $this->session->sess_destroy();
-    $this->start();
+     redirect("user/start");
   }
 
   if(array_key_exists('profile', $edits)){
